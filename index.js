@@ -1,12 +1,12 @@
+require("dotenv").config();
+
 import express from "express";
 import mongoose from "mongoose";
 
-const app = express();
 const mongoString = process.env.DATABASE_URL;
-const database = mongoose.connection;
 const PORT = process.env.PORT;
-
-require("dotenv").config();
+const app = express();
+const database = mongoose.connection;
 
 app.use(express.json());
 
