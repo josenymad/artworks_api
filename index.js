@@ -1,7 +1,8 @@
-require("dotenv").config();
-
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+
+dotenv.config();
 
 const mongoString = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
