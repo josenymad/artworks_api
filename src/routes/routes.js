@@ -1,12 +1,11 @@
 import express from "express";
-import { Model } from "mongoose";
+import Model from "../models/models.js";
 
 const router = express.Router();
 
 router.post("/post", async (req, res) => {
   const data = new Model({
     company: req.body.company,
-    date: req.body.date,
   });
 
   try {

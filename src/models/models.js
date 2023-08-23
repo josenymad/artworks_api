@@ -5,10 +5,6 @@ const dataSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  date: {
-    required: true,
-    type: Date,
-  },
 });
 
-export default dataSchema;
+export default mongoose.model("Data", dataSchema);
