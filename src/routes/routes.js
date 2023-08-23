@@ -6,6 +6,9 @@ const router = express.Router();
 router.post("/post", async (req, res) => {
   const data = new Model({
     company: req.body.company,
+    product: req.body.product,
+    partNumber: req.body.partNumber,
+    date: new Date(req.body.date),
   });
 
   try {

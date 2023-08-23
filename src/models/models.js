@@ -5,6 +5,18 @@ const dataSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  product: {
+    required: true,
+    type: String,
+  },
+  partNumber: {
+    required: false,
+    type: String,
+  },
+  date: {
+    required: true,
+    type: Date,
+  },
 });
 
 export default mongoose.model("Data", dataSchema);
