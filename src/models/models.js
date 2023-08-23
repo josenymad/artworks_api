@@ -17,6 +17,9 @@ const dataSchema = new mongoose.Schema({
     required: true,
     type: Date,
   },
+  image: {
+    type: String,
+  },
 });
 
 export default mongoose.model("Data", dataSchema);
