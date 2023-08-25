@@ -49,10 +49,34 @@ router.post("/post", upload.single("image"), (req, res) => {
 
 router.get("/getAll", async (_, res) => {
   try {
-    const data = await Model.find();
-    res.status(200).json(data);
+    const allArtworks = await Model.find();
+    res.status(200).json(allArtworks);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/getByCompany?", async (req, res) => {
+  const { company } = req.query;
+  try {
+    const artworkSearch = await Model.find({
+      company: new RegExp(company, "i"),
+    });
+    res.status(200).json(artworkSearch);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
+router.get("/getByPartNumber?", async (req, res) => {
+  const { partNumber } = req.query;
+  try {
+    const artworkSearch = await Model.find({
+      partNumber: new RegExp(partNumber, "i"),
+    });
+    res.status(200).json(artworkSearch);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 });
 
