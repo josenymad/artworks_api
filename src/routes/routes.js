@@ -57,8 +57,8 @@ router.get("/getAll", async (_, res) => {
 });
 
 router.get("/getByCompany?", async (req, res) => {
-  const { company } = req.query;
   try {
+    const { company } = req.query;
     const artworkSearch = await Model.find({
       company: new RegExp(company, "i"),
     });
@@ -69,14 +69,38 @@ router.get("/getByCompany?", async (req, res) => {
 });
 
 router.get("/getByPartNumber?", async (req, res) => {
-  const { partNumber } = req.query;
   try {
+    const { partNumber } = req.query;
     const artworkSearch = await Model.find({
       partNumber: new RegExp(partNumber, "i"),
     });
     res.status(200).json(artworkSearch);
   } catch (error) {
     res.status(404).json({ message: error.message });
+  }
+});
+
+router.patch("/update/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const options = { new: true };
+    const result = await Model.findByIdAndUpdate(id, updatedData, options);
+    res.send(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const unwantedArtwork = await Model.findByIdAndDelete(id);
+    res
+      .status(200)
+      .send(`${unwantedArtwork.company} ${unwantedArtwork.product} deleted`);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 
