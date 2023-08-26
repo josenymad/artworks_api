@@ -19,7 +19,7 @@ router.post("/post", upload.single("image"), (req, res) => {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: req.file.originalname,
     Body: req.file.buffer,
-    ACL: "public-read-write",
+    ACL: "public-read",
     ContentType: "application/pdf",
   };
 
