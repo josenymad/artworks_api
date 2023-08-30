@@ -4,9 +4,13 @@ import app from "./src/app.js";
 
 dotenv.config();
 
-const mongoString = process.env.DATABASE_URL;
+let mongoString = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
 const database = mongoose.connection;
+
+if (process.env.NODE_ENV === "testing") {
+  mongoString = process.env.MONGO_URI_TEST;
+}
 
 mongoose.connect(mongoString);
 
