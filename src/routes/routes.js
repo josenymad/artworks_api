@@ -28,8 +28,6 @@ router.post("/post", upload.single("image"), (req, res) => {
       res.status(500).send({ err: error });
     }
 
-    console.log(data);
-
     const artwork = new Model({
       company: req.body.company,
       product: req.body.product,
